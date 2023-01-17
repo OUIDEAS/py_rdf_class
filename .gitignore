@@ -1,3 +1,5 @@
 *__pycache__/
-*Training_Data/
-*Validation_Data/
+Training_Data/
+Validation_Data/
+Py_Decision_Trees/
+*.joblib
