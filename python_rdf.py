@@ -12,13 +12,7 @@ import joblib
 
 ################## OPTIONS ##################
 
-# Exporting options - OOB and Validation controll
-oob_error_bool = 1
-vali_error_bool = 1
-
 # Save Results
-oob_error_save_bool = 0
-vali_error_save_bool = 0
 rdf_save_bool = 1
 
 # RDF options
@@ -55,12 +49,12 @@ terrain_types_vali = vali_data_raw[vali_data_raw.columns[-1]]
 # Principal differences from standard is the use of all cores (n_jobs = -1), verbose=1, max_depth=10,100,200, and warm_start=True.
 rdf_clf = RandomForestClassifier(n_estimators=100,  
 criterion='gini', 
-max_depth=None, 
+max_depth=35, 
 min_samples_split=2, 
 min_samples_leaf=1, 
 min_weight_fraction_leaf=0.0, 
 max_features='sqrt', 
-max_leaf_nodes=5, 
+max_leaf_nodes=20, 
 min_impurity_decrease=0.0, 
 bootstrap=True, 
 oob_score=True, 
