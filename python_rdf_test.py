@@ -103,7 +103,7 @@ parameters = {
     'min_samples_split':[2,3],
     'min_samples_leaf':[3,5]}
 
-print(parameters)
+# print(parameters)
 
 # Creating the RDF parameters
 # Parameters are explained here - https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
@@ -129,7 +129,7 @@ rdf_clf = RandomForestClassifier()#n_estimators=1,
 
 # Testing the RDF
 
-grid = GridSearchCV(rdf_clf, param_grid=parameters, scoring='roc_auc', cv=3)
+grid = GridSearchCV(rdf_clf, param_grid=parameters)
 
 grid.fit(train_data, terrain_types_train)
 
