@@ -12,6 +12,7 @@ import time
 import joblib
 from sklearn.metrics import confusion_matrix
 
+
 ################## OPTIONS ##################
 
 # Save Results
@@ -24,9 +25,9 @@ split_training_data_bool = 1
 show_conf_mat = 1
 
 # RDF options
-min_estimator = 5
-max_estimator = 200
-step_size = 5
+min_estimator = 1
+max_estimator = 301
+step_size = 10
 
 ################## VAR INIT ##################
 
@@ -53,9 +54,8 @@ if split_training_data_bool:
     # Splitting Training Data
     train_data_all, vali_data_all, terrain_types_train, terrain_types_vali = train_test_split(train_data_all, 
                                                                                                 terrain_types, 
-                                                                                                test_size = 0.20)#, 
-                                                                                                # shuffle=terrain_types, 
-                                                                                                # stratify=None)
+                                                                                                test_size = 0.20,
+                                                                                                stratify=terrain_types)
 
     # Handling Training Data
     train_data = train_data_all[train_data_all.columns[col_array]]
@@ -86,14 +86,14 @@ else:
 
 # Creating the RDF parameters
 # Parameters are explained here - https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
-# Principal differences from standard is the use of all cores (n_jobs = -1), verbose=1, max_depth=10,100,200, and warm_start=True.
-rdf_clf = RandomForestClassifier(n_estimators=100,  
+# Principal differences from standard is the use of all cores (n_jobs = -1), verbose=1,  and warm_start=True.
+rdf_clf = RandomForestClassifier(n_estimators=1,  
 criterion='gini', 
-max_depth=100, 
+max_depth=5, 
 min_samples_split=10, 
-min_samples_leaf=10, 
+min_samples_leaf=3, 
 min_weight_fraction_leaf=0.0, 
-max_features='sqrt', 
+max_features=0.5, 
 max_leaf_nodes=None, 
 min_impurity_decrease=0.0, 
 bootstrap=True, 
@@ -103,8 +103,8 @@ random_state=None,
 verbose=1, 
 warm_start=True, 
 class_weight=None,
-ccp_alpha=0.100, 
-max_samples=None)
+ccp_alpha=0.0, 
+max_samples=0.9)
 
 # Save locations
 if rdf_save_bool:
