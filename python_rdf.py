@@ -25,7 +25,7 @@ show_conf_mat = 1
 
 # RDF options
 min_estimator = 5
-max_estimator = 205
+max_estimator = 200
 step_size = 5
 
 ################## VAR INIT ##################
@@ -41,7 +41,8 @@ parent_dir = "/media/autobuntu/chonk/chonk/git_repos/py_rdf_class/Py_Decision_Tr
 col_array = get_feats.get_feats()
 
 # Training Data Import
-train_data_all = pd.read_csv('Training_Data/RAN/RAN_BULK_ALL_&_MANUAL.csv')
+train_data_all = pd.read_csv('Training_Data/RAN/RAN_BULK.csv')
+
 
 # Split data - If needed, the total amount of data can be split into training/testing etc
 # Otherwise, it will load dedicated validation data seperate from the training data
@@ -50,7 +51,11 @@ if split_training_data_bool:
     terrain_types = train_data_all[train_data_all.columns[-1]]
 
     # Splitting Training Data
-    train_data_all, vali_data_all, terrain_types_train, terrain_types_vali = train_test_split(train_data_all, terrain_types, test_size = 0.10, random_state=1)
+    train_data_all, vali_data_all, terrain_types_train, terrain_types_vali = train_test_split(train_data_all, 
+                                                                                                terrain_types, 
+                                                                                                test_size = 0.20)#, 
+                                                                                                # shuffle=terrain_types, 
+                                                                                                # stratify=None)
 
     # Handling Training Data
     train_data = train_data_all[train_data_all.columns[col_array]]
@@ -60,8 +65,8 @@ if split_training_data_bool:
     vali_data = vali_data_all[vali_data_all.columns[col_array]]
     vali_data = np.nan_to_num(vali_data,nan= 0, posinf = 0, neginf=0)
 
-    print(train_data.shape)
-    print(vali_data.shape)
+    # print(train_data.shape)
+    # print(vali_data.shape)
 
 else:
 
@@ -84,9 +89,9 @@ else:
 # Principal differences from standard is the use of all cores (n_jobs = -1), verbose=1, max_depth=10,100,200, and warm_start=True.
 rdf_clf = RandomForestClassifier(n_estimators=100,  
 criterion='gini', 
-max_depth=50, 
-min_samples_split=2, 
-min_samples_leaf=1, 
+max_depth=100, 
+min_samples_split=10, 
+min_samples_leaf=10, 
 min_weight_fraction_leaf=0.0, 
 max_features='sqrt', 
 max_leaf_nodes=None, 
@@ -97,8 +102,8 @@ n_jobs=-1,
 random_state=None, 
 verbose=1, 
 warm_start=True, 
-class_weight=None, 
-ccp_alpha=0.0, 
+class_weight=None,
+ccp_alpha=0.100, 
 max_samples=None)
 
 # Save locations
@@ -131,7 +136,7 @@ for i in range(min_estimator, max_estimator+1, step_size):
 
     if show_conf_mat:
         conf_mat = confusion_matrix(terrain_types_vali, y_pred)
-        print(conf_mat)
+        # print(conf_mat)
 
 # Saving the validation results
 if rdf_save_bool:
@@ -146,8 +151,8 @@ vali_y_coords = [coord[1] for coord in vali_error_array]
 
 # Plotting
 fig = plt.figure(figsize=(15,15))
-plt.plot(oob_x_coords, oob_y_coords)
-plt.plot(vali_x_coords, vali_y_coords)
+plt.plot(oob_x_coords, oob_y_coords, label = 'OOB')
+plt.plot(vali_x_coords, vali_y_coords, label = 'VALI')
 plt.xlabel('n_estimators')
 plt.ylabel('Error %')
 plt.legend()
