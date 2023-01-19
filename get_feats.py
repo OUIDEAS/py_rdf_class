@@ -42,72 +42,72 @@ def get_feats():
     ## Range
 
     # Examining the range from LiDAR
-    StandDevRange_bool              = 1
+    StandDevRange_bool              = 0
     MeanRange_bool             		= 0
     MinRange_bool             		= 0
     MaxRange_bool             		= 0
     MedRange_bool             		= 0
-    RoughnessRange_bool             = 1
-    MinMaxRatioRange_bool           = 1
-    Min2MaxRatioRange_bool          = 1
-    MagGradientRange_bool           = 1
+    RoughnessRange_bool             = 0
+    MinMaxRatioRange_bool           = 0
+    Min2MaxRatioRange_bool          = 0
+    MagGradientRange_bool           = 0
 
     # Examining the range from LiDAR / XY Dist
-    StandDevRangeXYDist_bool        = 1
+    StandDevRangeXYDist_bool        = 0
     MeanRangeXYDist_bool            = 0
     MinRangeXYDist_bool             = 0
     MaxRangeXYDist_bool             = 0
     MedRangeXYDist_bool             = 0
-    RoughnessRangeXYDist_bool       = 1
-    MinMaxRatioRangeXYDist_bool     = 1
-    Min2MaxRatioRangeXYDist_bool    = 1
-    MagGradientRangeXYDist_bool     = 1
+    RoughnessRangeXYDist_bool       = 0
+    MinMaxRatioRangeXYDist_bool     = 0
+    Min2MaxRatioRangeXYDist_bool    = 0
+    MagGradientRangeXYDist_bool     = 0
 
     # Examining the range from LiDAR / Range
-    StandDevRangeRange_bool         = 1
+    StandDevRangeRange_bool         = 0
     MeanRangeRange_bool             = 0
     MinRangeRange_bool             	= 0
     MaxRangeRange_bool             	= 0
     MedRangeRange_bool             	= 0
-    RoughnessRangeRange_bool        = 1
-    MinMaxRatioRangeRange_bool      = 1
-    Min2MaxRatioRangeRange_bool     = 1
-    MagGradientRangeRange_bool      = 1
+    RoughnessRangeRange_bool        = 0
+    MinMaxRatioRangeRange_bool      = 0
+    Min2MaxRatioRangeRange_bool     = 0
+    MagGradientRangeRange_bool      = 0
 
     ## Z
 
     # Examining the Z from LiDAR
-    StandDevZ_bool                  = 1
+    StandDevZ_bool                  = 0
     MeanZ_bool                      = 0
     MinZ_bool                       = 0
     MaxZ_bool                       = 0
     MedZ_bool                       = 0
-    RoughnessZ_bool                 = 1
-    MinMaxRatioZ_bool               = 1
-    Min2MaxRatioZ_bool              = 1
-    MagGradientZ_bool               = 1
+    RoughnessZ_bool                 = 0
+    MinMaxRatioZ_bool               = 0
+    Min2MaxRatioZ_bool              = 0
+    MagGradientZ_bool               = 0
 
     # Examining the Z from LiDAR / XY Dist
-    StandDevZXYDist_bool            = 1
+    StandDevZXYDist_bool            = 0
     MeanZXYDist_bool                = 0
     MinZXYDist_bool                 = 0
     MaxZXYDist_bool                 = 0
     MedZXYDist_bool                 = 0
-    RoughnessZXYDist_bool           = 1
-    MinMaxRatioZXYDist_bool         = 1
-    Min2MaxRatioZXYDist_bool        = 1
-    MagGradientZXYDist_bool         = 1
+    RoughnessZXYDist_bool           = 0
+    MinMaxRatioZXYDist_bool         = 0
+    Min2MaxRatioZXYDist_bool        = 0
+    MagGradientZXYDist_bool         = 0
 
     # Examining the Z from LiDAR / Z
-    StandDevZRange_bool             = 1
+    StandDevZRange_bool             = 0
     MeanZRange_bool                 = 0
     MinZRange_bool                  = 0
     MaxZRange_bool                  = 0
     MedZRange_bool                  = 0
-    RoughnessZRange_bool            = 1
-    MinMaxRatioZRange_bool          = 1
-    Min2MaxRatioZRange_bool         = 1
-    MagGradientZRange_bool          = 1
+    RoughnessZRange_bool            = 0
+    MinMaxRatioZRange_bool          = 0
+    Min2MaxRatioZRange_bool         = 0
+    MagGradientZRange_bool          = 0
 
     ## SW - Spatial
         
@@ -137,27 +137,27 @@ def get_feats():
     Min2MaxRatioInt_bool            = 1
     MagGradientInt_bool             = 1
 
-    # Examining intensity / height
-    StandDevIntXYDist_bool          = 1
+    # Examining intensity / XY Dist
+    StandDevIntXYDist_bool          = 0
     MeanIntXYDist_bool             	= 0
     MinIntXYDist_bool             	= 0
     MaxIntXYDist_bool             	= 0
     MedIntXYDist_bool             	= 0
-    RangeIntXYDist_bool             = 1
-    MinMaxRatioIntXYDist_bool       = 1
-    Min2MaxRatioIntXYDist_bool      = 1
-    MagGradientIntXYDist_bool       = 1
+    RangeIntXYDist_bool             = 0
+    MinMaxRatioIntXYDist_bool       = 0
+    Min2MaxRatioIntXYDist_bool      = 0
+    MagGradientIntXYDist_bool       = 0
 
     # Examining intensity / range
-    StandDevIntRange_bool           = 1
+    StandDevIntRange_bool           = 0
     MeanIntRange_bool             	= 0
     MinIntRange_bool             	= 0
     MaxIntRange_bool             	= 0
     MedIntRange_bool             	= 0
-    RangeIntRange_bool             	= 1
-    MinMaxRatioIntRange_bool        = 1
-    Min2MaxRatioIntRange_bool       = 1
-    MagGradientIntRange_bool        = 1
+    RangeIntRange_bool             	= 0
+    MinMaxRatioIntRange_bool        = 0
+    Min2MaxRatioIntRange_bool       = 0
+    MagGradientIntRange_bool        = 0
 
     ## SW - Remission
 

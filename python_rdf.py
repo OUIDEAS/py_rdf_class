@@ -12,7 +12,6 @@ import time
 import joblib
 from sklearn.metrics import confusion_matrix
 
-
 ################## OPTIONS ##################
 
 # Save Results
@@ -26,7 +25,7 @@ show_conf_mat = 1
 
 # RDF options
 min_estimator = 1
-max_estimator = 301
+max_estimator = 201
 step_size = 10
 
 ################## VAR INIT ##################
@@ -42,8 +41,7 @@ parent_dir = "/media/autobuntu/chonk/chonk/git_repos/py_rdf_class/Py_Decision_Tr
 col_array = get_feats.get_feats()
 
 # Training Data Import
-train_data_all = pd.read_csv('Training_Data/RAN/RAN_BULK.csv')
-
+train_data_all = pd.read_csv('Training_Data/RAN/RAN_BULK_ALL_&_MANUAL.csv')
 
 # Split data - If needed, the total amount of data can be split into training/testing etc
 # Otherwise, it will load dedicated validation data seperate from the training data
@@ -54,7 +52,7 @@ if split_training_data_bool:
     # Splitting Training Data
     train_data_all, vali_data_all, terrain_types_train, terrain_types_vali = train_test_split(train_data_all, 
                                                                                                 terrain_types, 
-                                                                                                test_size = 0.20,
+                                                                                                test_size = 0.50,
                                                                                                 stratify=terrain_types)
 
     # Handling Training Data
@@ -89,22 +87,22 @@ else:
 # Principal differences from standard is the use of all cores (n_jobs = -1), verbose=1,  and warm_start=True.
 rdf_clf = RandomForestClassifier(n_estimators=1,  
 criterion='gini', 
-max_depth=5, 
-min_samples_split=10, 
+max_depth=7, 
+min_samples_split=2, 
 min_samples_leaf=3, 
-min_weight_fraction_leaf=0.0, 
-max_features=0.5, 
-max_leaf_nodes=None, 
+min_weight_fraction_leaf=0.40, 
+max_features='sqrt', 
+max_leaf_nodes=5, 
 min_impurity_decrease=0.0, 
 bootstrap=True, 
 oob_score=True, 
 n_jobs=-1, 
 random_state=None, 
 verbose=1, 
-warm_start=True, 
+warm_start=False, 
 class_weight=None,
 ccp_alpha=0.0, 
-max_samples=0.9)
+max_samples=0.99)
 
 # Save locations
 if rdf_save_bool:
@@ -127,7 +125,8 @@ for i in range(min_estimator, max_estimator+1, step_size):
 
     # Validation
     y_pred=rdf_clf.predict(vali_data)
-    vali_error_array.append((i,metrics.accuracy_score(terrain_types_vali, y_pred)))
+    vali_error_array.append((i,(1-metrics.accuracy_score(terrain_types_vali, y_pred)))) # ACCURACY NOT ERROR LOL
+    test_var = metrics.error_score
 
     # Saving the Trees
     if rdf_save_bool:
